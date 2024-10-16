@@ -14620,23 +14620,8 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># set random seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># define parameters</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="c1"># define parameters</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
@@ -14656,7 +14641,7 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># standardizing the data</span>
@@ -14675,11 +14660,31 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># generate Y</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">b1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">epsilon</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">b1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">epsilon</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ridge_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmd</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">lmd</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">beta_hat</span>
 </pre></div>
 
      </div>
@@ -14695,11 +14700,9 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ridge_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lmd</span><span class="p">):</span>
-    <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">lmd</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span>
-    <span class="k">return</span> <span class="n">beta_hat</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create X matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X_standardized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14707,7 +14710,7 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14715,51 +14718,12 @@ $$ Y_i = \beta_0 + \beta_1 X_i + \beta_2 X_i^2 + \beta_3 X_i^3 + \epsilon_i $$<p
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># not standardizing the data</span>
-<span class="n">lmd0</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">b_ridge0</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lmd0</span><span class="p">)</span>
-<span class="c1"># predict using the estimated coefficients</span>
-<span class="n">Y_hat0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span> <span class="o">@</span> <span class="n">b_ridge0</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_hat0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse0</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="c1"># standardizing the data</span>
-<span class="n">b_ridge0_</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lmd0</span><span class="p">)</span>
-<span class="c1"># predict using the estimated coefficients</span>
-<span class="n">Y_hat0_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span> <span class="o">@</span> <span class="n">b_ridge0_</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse0_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_hat0_</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse0_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmd0</span><span class="p">,</span> <span class="n">lmd1</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>mse with lambda = 0.1 without standardizing the data: 1.0939062762083729
-mse with lambda = 0.1 with standardizing the data: 1.0740449019290557
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14770,22 +14734,28 @@ mse with lambda = 0.1 with standardizing the data: 1.0740449019290557
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmd1</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="c1"># not standardizing the data</span>
-<span class="n">b_ridge1</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lmd1</span><span class="p">)</span>
-<span class="c1"># predict using the estimated coefficients</span>
-<span class="n">Y_hat1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span> <span class="o">@</span> <span class="n">b_ridge1</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_hat1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fit the model</span>
 
-<span class="c1"># standardizing the data</span>
-<span class="n">b_ridge1_</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lmd1</span><span class="p">)</span>
-<span class="c1"># predict using the estimated coefficients</span>
-<span class="n">Y_hat1_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span> <span class="o">@</span> <span class="n">b_ridge1_</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse1_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_hat1_</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">beta_hat</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmd0</span><span class="p">)</span>
+<span class="c1"># predict and calculate the mean squared error</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Not standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2">, MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">beta_hat1</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmd1</span><span class="p">)</span>
+<span class="n">y_hat1</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat1</span>
+<span class="n">mse1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Not standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2">, MSE = </span><span class="si">{</span><span class="n">mse1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">beta_hat_</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">X_standardized</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmd0</span><span class="p">)</span>
+<span class="n">y_hat_</span> <span class="o">=</span> <span class="n">X_standardized</span> <span class="o">@</span> <span class="n">beta_hat_</span>
+<span class="n">mse_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat_</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2">, MSE = </span><span class="si">{</span><span class="n">mse_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">beta_hat1_</span> <span class="o">=</span> <span class="n">ridge_regression</span><span class="p">(</span><span class="n">X_standardized</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmd1</span><span class="p">)</span>
+<span class="n">y_hat1_</span> <span class="o">=</span> <span class="n">X_standardized</span> <span class="o">@</span> <span class="n">beta_hat1_</span>
+<span class="n">mse1_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat1_</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2">, MSE = </span><span class="si">{</span><span class="n">mse1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14807,8 +14777,10 @@ mse with lambda = 0.1 with standardizing the data: 1.0740449019290557
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>mse with lambda = 0.01 without standardizing the data: 1.0742068107622686
-mse with lambda = 0.01 with standardizing the data: 1.068984594996808
+<pre>Not standardized &amp; lambda = 0.1, MSE = 0.794941936608605
+Not standardized &amp; lambda = 0.01, MSE = 0.7387468119546439
+Standardized &amp; lambda = 0.1, MSE = 0.7420973167905006
+Standardized &amp; lambda = 0.01, MSE = 0.7329252504766618
 </pre>
 </div>
 </div>
@@ -14861,7 +14833,7 @@ mse with lambda = 0.01 with standardizing the data: 1.068984594996808
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_standardized</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
      </div>
@@ -14885,48 +14857,7 @@ mse with lambda = 0.01 with standardizing the data: 1.068984594996808
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>((100,), (100,), (100,))</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmd0</span><span class="p">,</span> <span class="n">lmd1</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(0.1, 0.01)</pre>
+<pre>((100, 5), (100,), (100, 5))</pre>
 </div>
 
 </div>
@@ -14940,11 +14871,11 @@ mse with lambda = 0.01 with standardizing the data: 1.068984594996808
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">lasso_reg</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lmd</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lmd</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lmd</span> <span class="o">=</span> <span class="n">lmd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">tol</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span>
@@ -14996,26 +14927,15 @@ mse with lambda = 0.01 with standardizing the data: 1.068984594996808
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># case without standardizing the data</span>
-<span class="n">lasso0</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd0</span><span class="p">)</span>
-<span class="n">lasso0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse_lasso0</span> <span class="o">=</span> <span class="n">lasso0</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_lasso0</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">lasso1</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd1</span><span class="p">)</span>
-<span class="n">lasso1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse_lasso1</span> <span class="o">=</span> <span class="n">lasso1</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_lasso1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmd0</span><span class="p">,</span> <span class="n">lmd1</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span>
 </pre></div>
 
      </div>
@@ -15023,31 +14943,7 @@ mse with lambda = 0.01 with standardizing the data: 1.068984594996808
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>mse with lambda = 0.1 without standardizing the data: 1.1508305732256225
-mse with lambda = 0.01 without standardizing the data: 1.0871402994665913
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15055,47 +14951,19 @@ mse with lambda = 0.01 without standardizing the data: 1.0871402994665913
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># case with standardizing the data</span>
-<span class="n">lasso0_</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd0</span><span class="p">)</span>
-<span class="n">lasso0_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse_lasso0_</span> <span class="o">=</span> <span class="n">lasso0_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_lasso0_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">lasso1_</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd1</span><span class="p">)</span>
-<span class="n">lasso1_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="c1"># calculate the mse</span>
-<span class="n">mse_lasso1_</span> <span class="o">=</span> <span class="n">lasso1_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">x_standardized</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">Y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_lasso1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># train-test split</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
+<span class="c1"># standardizing the data</span>
+<span class="n">x_train_standardized</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="n">x_test_standardized</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>mse with lambda = 0.1 with standardizing the data: 1.1755404017481759
-mse with lambda = 0.01 with standardizing the data: 1.070824122036093
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15106,14 +14974,10 @@ mse with lambda = 0.01 with standardizing the data: 1.070824122036093
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># since unclear the effect of changing lambda, use train-test split to evaluate the model</span>
-<span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
-<span class="c1"># standardizing the data</span>
-<span class="n">x_train_standardized</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
-<span class="n">x_test_standardized</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X_train_standardized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train_standardized</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X_test_standardized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test_standardized</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15131,81 +14995,33 @@ mse with lambda = 0.01 with standardizing the data: 1.070824122036093
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># case without standardizing the data</span>
 <span class="n">lasso0</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd0</span><span class="p">)</span>
-<span class="n">lasso0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate train mse</span>
-<span class="n">mse_train_lasso0</span> <span class="o">=</span> <span class="n">lasso0</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate test mse</span>
-<span class="n">mse_test_lasso0</span> <span class="o">=</span> <span class="n">lasso0</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"train mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_train_lasso0</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_test_lasso0</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">lasso0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># calcualte train and test MSE</span>
+<span class="n">mse_train0</span> <span class="o">=</span> <span class="n">lasso0</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">mse_test0</span> <span class="o">=</span> <span class="n">lasso0</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Not standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2">, Train MSE = </span><span class="si">{</span><span class="n">mse_train0</span><span class="si">}</span><span class="s2">, Test MSE = </span><span class="si">{</span><span class="n">mse_test0</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">lasso1</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd1</span><span class="p">)</span>
-<span class="n">lasso1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate train mse</span>
-<span class="n">mse_train_lasso1</span> <span class="o">=</span> <span class="n">lasso1</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate test mse</span>
-<span class="n">mse_test_lasso1</span> <span class="o">=</span> <span class="n">lasso1</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"train mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_train_lasso1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> without standardizing the data: </span><span class="si">{</span><span class="n">mse_test_lasso1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
+<span class="n">lasso1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># calcualte train and test MSE</span>
+<span class="n">mse_train1</span> <span class="o">=</span> <span class="n">lasso1</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">mse_test1</span> <span class="o">=</span> <span class="n">lasso1</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Not standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2">, Train MSE = </span><span class="si">{</span><span class="n">mse_train1</span><span class="si">}</span><span class="s2">, Test MSE = </span><span class="si">{</span><span class="n">mse_test1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>train mse with lambda = 0.1 without standardizing the data: 1.2612498747532779
-test mse with lambda = 0.1 without standardizing the data: 0.6818476146548968
-train mse with lambda = 0.01 without standardizing the data: 1.1930347305758442
-test mse with lambda = 0.01 without standardizing the data: 0.6829818446647704
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># case with standardizing the data</span>
+<span class="c1"># case with standardizing the data</span>
 <span class="n">lasso0_</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd0</span><span class="p">)</span>
-<span class="n">lasso0_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train_standardized</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate train mse</span>
-<span class="n">mse_train_lasso0_</span> <span class="o">=</span> <span class="n">lasso0_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train_standardized</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate test mse</span>
-<span class="n">mse_test_lasso0_</span> <span class="o">=</span> <span class="n">lasso0_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test_standardized</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"train mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_train_lasso0_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test mse with lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_test_lasso0_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">lasso0_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_standardized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># calcualte train and test MSE</span>
+<span class="n">mse_train0_</span> <span class="o">=</span> <span class="n">lasso0_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_train_standardized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">mse_test0_</span> <span class="o">=</span> <span class="n">lasso0_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_test_standardized</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd0</span><span class="si">}</span><span class="s2">, Train MSE = </span><span class="si">{</span><span class="n">mse_train0_</span><span class="si">}</span><span class="s2">, Test MSE = </span><span class="si">{</span><span class="n">mse_test0_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">lasso1_</span> <span class="o">=</span> <span class="n">lasso_reg</span><span class="p">(</span><span class="n">lmd1</span><span class="p">)</span>
-<span class="n">lasso1_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train_standardized</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate train mse</span>
-<span class="n">mse_train_lasso1_</span> <span class="o">=</span> <span class="n">lasso1_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">x_train_standardized</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_train_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># calculate test mse</span>
-<span class="n">mse_test_lasso1_</span> <span class="o">=</span> <span class="n">lasso1_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">x_test_standardized</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x_test_standardized</span><span class="o">**</span><span class="mi">3</span><span class="p">)),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"train mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_train_lasso1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test mse with lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2"> with standardizing the data: </span><span class="si">{</span><span class="n">mse_test_lasso1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">lasso1_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_standardized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># calcualte train and test MSE</span>
+<span class="n">mse_train1_</span> <span class="o">=</span> <span class="n">lasso1_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_train_standardized</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">mse_test1_</span> <span class="o">=</span> <span class="n">lasso1_</span><span class="o">.</span><span class="n">cal_mse</span><span class="p">(</span><span class="n">X_test_standardized</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Standardized &amp; lambda = </span><span class="si">{</span><span class="n">lmd1</span><span class="si">}</span><span class="s2">, Train MSE = </span><span class="si">{</span><span class="n">mse_train1_</span><span class="si">}</span><span class="s2">, Test MSE = </span><span class="si">{</span><span class="n">mse_test1_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15227,10 +15043,10 @@ test mse with lambda = 0.01 without standardizing the data: 0.6829818446647704
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>train mse with lambda = 0.1 with standardizing the data: 1.2858833371163871
-test mse with lambda = 0.1 with standardizing the data: 0.6007472024541338
-train mse with lambda = 0.01 with standardizing the data: 1.1760703588835029
-test mse with lambda = 0.01 with standardizing the data: 0.6446689662376079
+<pre>Not standardized &amp; lambda = 0.1, Train MSE = 0.9795324278919608, Test MSE = 0.36428484774834435
+Not standardized &amp; lambda = 0.01, Train MSE = 0.8430831966174044, Test MSE = 0.4200338173817821
+Standardized &amp; lambda = 0.1, Train MSE = 0.9319593820315231, Test MSE = 0.4162437810188807
+Standardized &amp; lambda = 0.01, Train MSE = 0.7911449728278032, Test MSE = 0.512160403542953
 </pre>
 </div>
 </div>
