@@ -1,0 +1,16 @@
+
+output
+
+venv
+
+# data end with .npy
+*.npy
+
+# data end with .bat
+*.bat
+
+# data end with .ipynb
+*.ipynb
+
+# model file, end with .pth
+*.pth
